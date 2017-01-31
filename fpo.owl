@@ -1,0 +1,503 @@
+@prefix : <http://factoid-dighum.kcl.ac.uk/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix cidoc: <http://erlangen-crm.org/current/> .
+@prefix frbroo: <http://www.ifla.org/files/assets/cataloguing/FRBRoo/frbroo_v_2.4.pdf#> .
+
+<http://factoid-dighum.kcl.ac.uk/ontology> a owl:Ontology ;
+	rdfs:label "A Factoid Prosopography Ontology" ;
+	owl:versionInfo "0.1"^^xsd:decimal ;
+	rdfs:comment """FPO (Factoid Prosopography Ontology) is an ontology which has been defined to formalise some aspects of the practice of Factoid Prosopography has it has been practiced in the six structured prosopographies collaboratively created by King's College London's Department of Digital Humanities (formally Centre for Computing in the Humanities) with various historians between 1995 and 2016.  By defining this ontology its makers wish to clarify some aspects of how this approach for factoid prosopography actually worked.
+
+It is created starting in 2016 by John Bradley, now a retired member of DDH but who participated in various ways from developer to Co-Investigator in all six of KCL's factoid prosopographical projects.  At this point this version of FPO represents  work in progress rather than a definitive definition.""" .
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#assertsPossessionOf
+
+:assertsPossessionOf a owl:ObjectProperty ;
+	rdfs:domain :PossessionFactoid ;
+	rdfs:range :Possession .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#dateAsserted
+
+:dateAsserted a owl:ObjectProperty ;
+	rdfs:domain :Factoid ;
+	rdfs:range :DateRange .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#dateForAssertion
+
+:dateForAssertion a owl:ObjectProperty ;
+	rdfs:domain :StateOfAffairsFactoid ;
+	rdfs:range :DateRange .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#fromSource
+
+:fromSource a owl:ObjectProperty ;
+	rdfs:domain :SourceCitation ;
+	rdfs:range :Source .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasDateAssertionMade
+
+:hasDateAssertionMade a owl:ObjectProperty ;
+	rdfs:domain :Assertion ;
+	rdfs:range :DateRange .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasFromRange
+
+:hasFromRange a owl:ObjectProperty ;
+	rdfs:domain :DateRangeCompound ;
+	rdfs:range :DateRangeTEI .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasLifeDates
+
+:hasLifeDates a owl:ObjectProperty ;
+	rdfs:domain :Person ;
+	rdfs:range :DateRange .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasReference
+
+:hasReference a owl:ObjectProperty ;
+	rdfs:domain :Assertion ;
+	rdfs:range :Reference .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasToRange
+
+:hasToRange a owl:ObjectProperty ;
+	rdfs:domain :DateRangeCompound ;
+	rdfs:range :DateRangeTEI .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#involvesPossession
+
+:involvesPossession a owl:ObjectProperty ;
+	rdfs:domain :Transaction ;
+	rdfs:range :Possession .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#isFrom
+
+:isFrom a owl:ObjectProperty ;
+	rdfs:domain :DateRangeTEI ;
+	rdfs:range :Date .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#isNotAfter
+
+:isNotAfter a owl:ObjectProperty ;
+	rdfs:domain :DateRangeTEI ;
+	rdfs:range :Date .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#isNotBefore
+
+:isNotBefore a owl:ObjectProperty ;
+	rdfs:domain :DateRangeTEI ;
+	rdfs:range :Date .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#isTo
+
+:isTo a owl:ObjectProperty ;
+	rdfs:domain :DateRangeTEI ;
+	rdfs:range :Date .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#locatedAt
+
+:locatedAt a owl:ObjectProperty ;
+	rdfs:domain :GeographicalPossession ;
+	rdfs:range :Location .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#occurredOn
+
+:occurredOn a owl:ObjectProperty ;
+	rdfs:domain :EventFactoid ;
+	rdfs:range :DateRange .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#references
+
+:references a owl:ObjectProperty ;
+	rdfs:domain :PersonReference ;
+	rdfs:range :Person .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#referencesLocation
+
+:referencesLocation a owl:ObjectProperty ;
+	rdfs:domain :LocationReference ;
+	rdfs:range :Location .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#sourcedFrom
+
+:sourcedFrom a owl:ObjectProperty ;
+	rdfs:domain :Assertion ;
+	rdfs:range :SourceCitation .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Data properties
+# #
+# #################################################################
+# 
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasBibliographicEntry
+
+:hasBibliographicEntry a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasDay
+
+:hasDay a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Date ;
+	rdfs:range _:genid1 .
+
+_:genid1 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:genid2 .
+
+_:genid2 a rdf:List ;
+	rdf:first _:genid3 .
+
+_:genid3 xsd:maxInclusive "31"^^xsd:integer .
+
+_:genid2 rdf:rest rdf:nil .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasDisplayName
+
+:hasDisplayName a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasDisplayNameComponent
+
+:hasDisplayNameComponent a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasDisplayNumberComponent
+
+:hasDisplayNumberComponent a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Person ;
+	rdfs:range xsd:int .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasEventName
+
+:hasEventName a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :EventFactoid ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasISO8601Date
+
+:hasISO8601Date a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Date ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasLocationName
+
+:hasLocationName a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Location ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasMonth
+
+:hasMonth a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Date ;
+	rdfs:range _:genid4 .
+
+_:genid4 a rdfs:Datatype ;
+	owl:onDatatype xsd:integer ;
+	owl:withRestrictions _:genid5 .
+
+_:genid5 a rdf:List ;
+	rdf:first _:genid6 .
+
+_:genid6 xsd:maxInclusive "12"^^xsd:integer .
+
+_:genid5 rdf:rest rdf:nil .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasNameInSourceAs
+
+:hasNameInSourceAs a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Reference ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasPlaceInSource
+
+:hasPlaceInSource a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :SourceCitation ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasPossessionName
+
+:hasPossessionName a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Possession ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasSourceID
+
+:hasSourceID a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasSourceName
+
+:hasSourceName a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Source ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasTextualDescription
+
+:hasTextualDescription a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :DateRange ;
+	rdfs:range xsd:string .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#hasYear
+
+:hasYear a owl:DatatypeProperty , owl:FunctionalProperty ;
+	rdfs:domain :Date ;
+	rdfs:range xsd:integer .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+# 
+# 
+# http://erlangen-crm.org/current/E39_Actor
+
+cidoc:E39_Actor a owl:Class .
+# 
+# http://erlangen-crm.org/current/E53_Place
+
+cidoc:E53_Place a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Assertion
+
+:Assertion a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#CIDOC_Actor
+
+:CIDOC_Actor a owl:Class ;
+	rdfs:subClassOf cidoc:E39_Actor , :Person .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#CIDOC_Place
+
+:CIDOC_Place a owl:Class ;
+	rdfs:subClassOf cidoc:E53_Place , :Location .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Date
+
+:Date a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#DateRange
+
+:DateRange a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#DateRangeCompound
+
+:DateRangeCompound a owl:Class ;
+	rdfs:subClassOf :DateRange .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#DateRangeTEI
+
+:DateRangeTEI a owl:Class ;
+	rdfs:subClassOf :DateRange .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#EventFactoid
+
+:EventFactoid a owl:Class ;
+	rdfs:subClassOf :Factoid ;
+	owl:disjointWith :StateOfAffairsFactoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#FRBRSource
+
+:FRBRSource a owl:Class ;
+	rdfs:subClassOf :Source , frbroo:F2_Expression .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Factoid
+
+:Factoid a owl:Class ;
+	rdfs:subClassOf :Assertion .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#FemalePerson
+
+:FemalePerson a owl:Class ;
+	rdfs:subClassOf :Person .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#GeographicalPossession
+
+:GeographicalPossession a owl:Class ;
+	rdfs:subClassOf :Possession .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Group
+
+:Group a owl:Class ;
+	rdfs:subClassOf :Person .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Institution
+
+:Institution a owl:Class ;
+	rdfs:subClassOf :Group .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Location
+
+:Location a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#LocationReference
+
+:LocationReference a owl:Class ;
+	rdfs:subClassOf :Reference .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#MalePerson
+
+:MalePerson a owl:Class ;
+	rdfs:subClassOf :Person .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#NongeographicalPossession
+
+:NongeographicalPossession a owl:Class ;
+	rdfs:subClassOf :Possession .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#OccupationFactoid
+
+:OccupationFactoid a owl:Class ;
+	rdfs:subClassOf :StateOfAffairsFactoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#OfficeFactoid
+
+:OfficeFactoid a owl:Class ;
+	rdfs:subClassOf :StateOfAffairsFactoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Person
+
+:Person a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#PersonReference
+
+:PersonReference a owl:Class ;
+	rdfs:subClassOf :Reference .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Possession
+
+:Possession a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#PossessionFactoid
+
+:PossessionFactoid a owl:Class ;
+	rdfs:subClassOf :StateOfAffairsFactoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Reference
+
+:Reference a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#ReferenceAsObject
+
+:ReferenceAsObject a owl:Class ;
+	rdfs:subClassOf :PersonReference ;
+	owl:disjointWith :ReferenceAsSubject .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#ReferenceAsSubject
+
+:ReferenceAsSubject a owl:Class ;
+	rdfs:subClassOf :PersonReference .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#RelationshipFactoid
+
+:RelationshipFactoid a owl:Class ;
+	rdfs:subClassOf :StateOfAffairsFactoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Source
+
+:Source a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#SourceCitation
+
+:SourceCitation a owl:Class .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#StateOfAffairsFactoid
+
+:StateOfAffairsFactoid a owl:Class ;
+	rdfs:subClassOf :Factoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#StatusFactoid
+
+:StatusFactoid a owl:Class ;
+	rdfs:subClassOf :StateOfAffairsFactoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#TitleFactoid
+
+:TitleFactoid a owl:Class ;
+	rdfs:subClassOf :StateOfAffairsFactoid .
+# 
+# http://factoid-dighum.kcl.ac.uk/ontology#Transaction
+
+:Transaction a owl:Class ;
+	rdfs:subClassOf :EventFactoid .
+# 
+# http://www.ifla.org/files/assets/cataloguing/FRBRoo/frbroo_v_2.4.pdf#F2_Expression
+
+frbroo:F2_Expression a owl:Class .
+# 
+# 
+# 
+# #################################################################
+# #
+# #    General axioms
+# #
+# #################################################################
+# 
+# 
+
+_:genid7 a owl:AllDisjointClasses ;
+	owl:members _:genid10 .
+
+_:genid10 a rdf:List ;
+	rdf:first :FemalePerson ;
+	rdf:rest _:genid9 .
+
+_:genid9 a rdf:List ;
+	rdf:first :Group ;
+	rdf:rest _:genid8 .
+
+_:genid8 a rdf:List ;
+	rdf:first :MalePerson ;
+	rdf:rest rdf:nil .
+# 
+
+_:genid11 a owl:AllDisjointClasses ;
+	owl:members _:genid17 .
+
+_:genid17 a rdf:List ;
+	rdf:first :OccupationFactoid ;
+	rdf:rest _:genid16 .
+
+_:genid16 a rdf:List ;
+	rdf:first :OfficeFactoid ;
+	rdf:rest _:genid15 .
+
+_:genid15 a rdf:List ;
+	rdf:first :PossessionFactoid ;
+	rdf:rest _:genid14 .
+
+_:genid14 a rdf:List ;
+	rdf:first :RelationshipFactoid ;
+	rdf:rest _:genid13 .
+
+_:genid13 a rdf:List ;
+	rdf:first :StatusFactoid ;
+	rdf:rest _:genid12 .
+
+_:genid12 a rdf:List ;
+	rdf:first :TitleFactoid ;
+	rdf:rest rdf:nil .
+# 
+# Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi
