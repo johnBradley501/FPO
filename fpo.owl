@@ -1,4 +1,5 @@
-@prefix : <http://factoid-dighum.kcl.ac.uk/ontology#> .
+@prefix : <https://github.com/johnBradley501/FPO/raw/master/fpo.owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -7,12 +8,15 @@
 @prefix cidoc: <http://erlangen-crm.org/current/> .
 @prefix frbroo: <http://www.ifla.org/files/assets/cataloguing/FRBRoo/frbroo_v_2.4.pdf#> .
 
-<http://factoid-dighum.kcl.ac.uk/ontology> a owl:Ontology ;
+<https://github.com/johnBradley501/FPO/raw/master/fpo.owl> a owl:Ontology ;
 	rdfs:label "A Factoid Prosopography Ontology" ;
-	owl:versionInfo "0.1"^^xsd:decimal ;
-	rdfs:comment """FPO (Factoid Prosopography Ontology) is an ontology which has been defined to formalise some aspects of the practice of Factoid Prosopography has it has been practiced in the six structured prosopographies collaboratively created by King's College London's Department of Digital Humanities (formally Centre for Computing in the Humanities) with various historians between 1995 and 2016.  By defining this ontology its makers wish to clarify some aspects of how this approach for factoid prosopography actually worked.
+	owl:versionInfo "1.0"^^xsd:decimal ;
+	dc:rights "Creative Commons Attribution-NonCommercial 4.0 International License." ;
+	rdfs:comment """FPO (Factoid Prosopography Ontology) is an ontology which has been defined to formalise some aspects of the practice of Factoid Prosopography as it has been practiced in the six structured prosopographies collaboratively created by King's College London's Department of Digital Humanities (formally Centre for Computing in the Humanities) with various historians between 1995 and 2016.  By defining this ontology its makers wish to clarify some aspects of how this approach for factoid prosopography actually worked.
 
-It is created starting in 2016 by John Bradley, now a retired member of DDH but who participated in various ways from developer to Co-Investigator in all six of KCL's factoid prosopographical projects.  At this point this version of FPO represents  work in progress rather than a definitive definition.""" .
+It was first created (version 0.1) in 2016 by John Bradley, now a retired member of DDH but who participated in various ways (from developer to Co-Investigator) in all six of KCL's factoid prosopographical projects.  This version (1.0: June 2010) of FPO is much like the previous preliminary version, with the most significant change being in the representation of :Reference and the associated addition of the new class :Role.""" ;
+	dc:creator "John Bradley (King's Digital Lab, King's Collage London)" ;
+	dc:title "A Factoid Prosopography Ontology" .
 # 
 # 
 # #################################################################
@@ -22,115 +26,121 @@ It is created starting in 2016 by John Bradley, now a retired member of DDH but 
 # #################################################################
 # 
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#assertsPossessionOf
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#assertsPossessionOf
 
 :assertsPossessionOf a owl:ObjectProperty ;
 	rdfs:domain :PossessionFactoid ;
 	rdfs:range :Possession .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#dateAsserted
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#dateAsserted
 
 :dateAsserted a owl:ObjectProperty ;
 	rdfs:domain :Factoid ;
 	rdfs:range :DateRange .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#dateForAssertion
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#dateForAssertion
 
 :dateForAssertion a owl:ObjectProperty ;
 	rdfs:domain :StateOfAffairsFactoid ;
 	rdfs:range :DateRange .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#fromSource
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#fromSource
 
 :fromSource a owl:ObjectProperty ;
 	rdfs:domain :SourceCitation ;
 	rdfs:range :Source .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasDateAssertionMade
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasDateAssertionMade
 
 :hasDateAssertionMade a owl:ObjectProperty ;
 	rdfs:domain :Assertion ;
 	rdfs:range :DateRange .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasFromRange
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasFromRange
 
 :hasFromRange a owl:ObjectProperty ;
 	rdfs:domain :DateRangeCompound ;
 	rdfs:range :DateRangeTEI .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasLifeDates
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasLifeDates
 
 :hasLifeDates a owl:ObjectProperty ;
 	rdfs:domain :Person ;
 	rdfs:range :DateRange .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasReference
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasReference
 
 :hasReference a owl:ObjectProperty ;
 	rdfs:domain :Assertion ;
 	rdfs:range :Reference .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasToRange
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasRole
+
+:hasRole a owl:ObjectProperty ;
+	rdfs:domain :Reference ;
+	rdfs:range :Role .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasToRange
 
 :hasToRange a owl:ObjectProperty ;
 	rdfs:domain :DateRangeCompound ;
 	rdfs:range :DateRangeTEI .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#involvesPossession
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#involvesPossession
 
 :involvesPossession a owl:ObjectProperty ;
 	rdfs:domain :Transaction ;
 	rdfs:range :Possession .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#isFrom
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#isFrom
 
 :isFrom a owl:ObjectProperty ;
 	rdfs:domain :DateRangeTEI ;
 	rdfs:range :Date .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#isNotAfter
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#isNotAfter
 
 :isNotAfter a owl:ObjectProperty ;
 	rdfs:domain :DateRangeTEI ;
 	rdfs:range :Date .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#isNotBefore
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#isNotBefore
 
 :isNotBefore a owl:ObjectProperty ;
 	rdfs:domain :DateRangeTEI ;
 	rdfs:range :Date .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#isTo
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#isTo
 
 :isTo a owl:ObjectProperty ;
 	rdfs:domain :DateRangeTEI ;
 	rdfs:range :Date .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#locatedAt
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#locatedAt
 
 :locatedAt a owl:ObjectProperty ;
 	rdfs:domain :GeographicalPossession ;
 	rdfs:range :Location .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#occurredOn
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#occurredOn
 
 :occurredOn a owl:ObjectProperty ;
 	rdfs:domain :EventFactoid ;
 	rdfs:range :DateRange .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#references
-
-:references a owl:ObjectProperty ;
-	rdfs:domain :PersonReference ;
-	rdfs:range :Person .
-# 
-# http://factoid-dighum.kcl.ac.uk/ontology#referencesLocation
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#referencesLocation
 
 :referencesLocation a owl:ObjectProperty ;
 	rdfs:domain :LocationReference ;
 	rdfs:range :Location .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#sourcedFrom
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#referencesPerson
+
+:referencesPerson a owl:ObjectProperty ;
+	rdfs:domain :PersonReference ;
+	rdfs:range :Person .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#sourcedFrom
 
 :sourcedFrom a owl:ObjectProperty ;
 	rdfs:domain :Assertion ;
@@ -145,13 +155,13 @@ It is created starting in 2016 by John Bradley, now a retired member of DDH but 
 # #################################################################
 # 
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasBibliographicEntry
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasBibliographicEntry
 
 :hasBibliographicEntry a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Source ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasDay
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasDay
 
 :hasDay a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Date ;
@@ -168,43 +178,43 @@ _:genid3 xsd:maxInclusive "31"^^xsd:integer .
 
 _:genid2 rdf:rest rdf:nil .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasDisplayName
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasDisplayName
 
 :hasDisplayName a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Person ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasDisplayNameComponent
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasDisplayNameComponent
 
 :hasDisplayNameComponent a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Person ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasDisplayNumberComponent
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasDisplayNumberComponent
 
 :hasDisplayNumberComponent a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Person ;
 	rdfs:range xsd:int .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasEventName
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasEventName
 
 :hasEventName a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :EventFactoid ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasISO8601Date
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasISO8601Date
 
 :hasISO8601Date a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Date ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasLocationName
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasLocationName
 
 :hasLocationName a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Location ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasMonth
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasMonth
 
 :hasMonth a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Date ;
@@ -221,43 +231,49 @@ _:genid6 xsd:maxInclusive "12"^^xsd:integer .
 
 _:genid5 rdf:rest rdf:nil .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasNameInSourceAs
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasNameInSourceAs
 
 :hasNameInSourceAs a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Reference ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasPlaceInSource
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasPlaceInSource
 
 :hasPlaceInSource a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :SourceCitation ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasPossessionName
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasPossessionName
 
 :hasPossessionName a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Possession ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasSourceID
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasRoleName
+
+:hasRoleName a owl:DatatypeProperty ;
+	rdfs:domain :Role ;
+	rdfs:range xsd:string .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasSourceID
 
 :hasSourceID a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Source ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasSourceName
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasSourceName
 
 :hasSourceName a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Source ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasTextualDescription
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasTextualDescription
 
 :hasTextualDescription a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :DateRange ;
 	rdfs:range xsd:string .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#hasYear
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#hasYear
 
 :hasYear a owl:DatatypeProperty , owl:FunctionalProperty ;
 	rdfs:domain :Date ;
@@ -280,172 +296,176 @@ cidoc:E39_Actor a owl:Class .
 
 cidoc:E53_Place a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Assertion
+# http://www.ifla.org/files/assets/cataloguing/FRBRoo/frbroo_v_2.4.pdf#F2_Expression
+
+frbroo:F2_Expression a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Assertion
 
 :Assertion a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#CIDOC_Actor
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#CIDOC_Actor
 
 :CIDOC_Actor a owl:Class ;
 	rdfs:subClassOf cidoc:E39_Actor , :Person .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#CIDOC_Place
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#CIDOC_Place
 
 :CIDOC_Place a owl:Class ;
 	rdfs:subClassOf cidoc:E53_Place , :Location .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Date
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Date
 
 :Date a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#DateRange
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#DateRange
 
 :DateRange a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#DateRangeCompound
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#DateRangeCompound
 
 :DateRangeCompound a owl:Class ;
 	rdfs:subClassOf :DateRange .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#DateRangeTEI
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#DateRangeTEI
 
 :DateRangeTEI a owl:Class ;
 	rdfs:subClassOf :DateRange .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#EventFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#EventFactoid
 
 :EventFactoid a owl:Class ;
 	rdfs:subClassOf :Factoid ;
 	owl:disjointWith :StateOfAffairsFactoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#FRBRSource
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#FRBRSource
 
 :FRBRSource a owl:Class ;
-	rdfs:subClassOf :Source , frbroo:F2_Expression .
+	rdfs:subClassOf frbroo:F2_Expression , :Source .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Factoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Factoid
 
 :Factoid a owl:Class ;
 	rdfs:subClassOf :Assertion .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#FemalePerson
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#FemalePerson
 
 :FemalePerson a owl:Class ;
 	rdfs:subClassOf :Person .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#GeographicalPossession
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#GeographicalPossession
 
 :GeographicalPossession a owl:Class ;
 	rdfs:subClassOf :Possession .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Group
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Group
 
 :Group a owl:Class ;
 	rdfs:subClassOf :Person .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Institution
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Institution
 
 :Institution a owl:Class ;
 	rdfs:subClassOf :Group .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Location
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Location
 
 :Location a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#LocationReference
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#LocationReference
 
 :LocationReference a owl:Class ;
 	rdfs:subClassOf :Reference .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#MalePerson
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#MalePerson
 
 :MalePerson a owl:Class ;
 	rdfs:subClassOf :Person .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#NongeographicalPossession
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#NongeographicalPossession
 
 :NongeographicalPossession a owl:Class ;
 	rdfs:subClassOf :Possession .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#OccupationFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#OccupationFactoid
 
 :OccupationFactoid a owl:Class ;
 	rdfs:subClassOf :StateOfAffairsFactoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#OfficeFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#OfficeFactoid
 
 :OfficeFactoid a owl:Class ;
 	rdfs:subClassOf :StateOfAffairsFactoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Person
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Person
 
 :Person a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#PersonReference
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#PersonReference
 
 :PersonReference a owl:Class ;
 	rdfs:subClassOf :Reference .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Possession
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Possession
 
 :Possession a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#PossessionFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#PossessionFactoid
 
 :PossessionFactoid a owl:Class ;
 	rdfs:subClassOf :StateOfAffairsFactoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Reference
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Reference
 
 :Reference a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#ReferenceAsObject
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#ReferenceAsObject
 
 :ReferenceAsObject a owl:Class ;
 	rdfs:subClassOf :PersonReference ;
 	owl:disjointWith :ReferenceAsSubject .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#ReferenceAsSubject
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#ReferenceAsSubject
 
 :ReferenceAsSubject a owl:Class ;
 	rdfs:subClassOf :PersonReference .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#RelationshipFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#RelationshipFactoid
 
 :RelationshipFactoid a owl:Class ;
 	rdfs:subClassOf :StateOfAffairsFactoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Source
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Role
+
+:Role a owl:Class .
+# 
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Source
 
 :Source a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#SourceCitation
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#SourceCitation
 
 :SourceCitation a owl:Class .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#StateOfAffairsFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#StateOfAffairsFactoid
 
 :StateOfAffairsFactoid a owl:Class ;
 	rdfs:subClassOf :Factoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#StatusFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#StatusFactoid
 
 :StatusFactoid a owl:Class ;
 	rdfs:subClassOf :StateOfAffairsFactoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#TitleFactoid
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#TitleFactoid
 
 :TitleFactoid a owl:Class ;
 	rdfs:subClassOf :StateOfAffairsFactoid .
 # 
-# http://factoid-dighum.kcl.ac.uk/ontology#Transaction
+# https://github.com/johnBradley501/FPO/raw/master/fpo.owl#Transaction
 
 :Transaction a owl:Class ;
 	rdfs:subClassOf :EventFactoid .
-# 
-# http://www.ifla.org/files/assets/cataloguing/FRBRoo/frbroo_v_2.4.pdf#F2_Expression
-
-frbroo:F2_Expression a owl:Class .
 # 
 # 
 # 
